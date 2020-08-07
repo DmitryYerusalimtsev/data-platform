@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ignite-cluster
+  namespace: ignite
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ignite
+  template:
+    metadata:
+      labels:
+        app: ignite
+    spec:
+      serviceAccountName: ignite
+      containers:
+        # Custom Ignite pod name.
+        - name: ignite-node
+          image: apacheignite/ignite:2.5.0
+          volumeMounts:
+            - mountPath: /ignite-cluster/ignite-config.xml
+              name: ignite-volume
+              subPath: ignite-config.xml
+          env:
+            - name: OPTION_LIBS
+              value: ignite-kubernetes
+            - name: CONFIG_URI
+              value: file:///ignite-cluster/ignite-config.xml
+          ports:
+            # Ports to open.
+            # Might be optional depending on your Kubernetes environment.
+            - containerPort: 11211 # REST port number.
+            - containerPort: 47100 # communication SPI port number.
+            - containerPort: 47500 # discovery SPI port number.
+            - containerPort: 49112 # JMX port number.
+            - containerPort: 10800 # SQL port number.
+            - containerPort: 10900 # Thin clients port number.
+
+      volumes:
+        - name: ignite-volume
+          configMap:
+            name: ignite-config
