@@ -1,2 +1,4 @@
 rootProject.name = 'iot-platform'
 
+include 'domain'
+include 'initializer'
