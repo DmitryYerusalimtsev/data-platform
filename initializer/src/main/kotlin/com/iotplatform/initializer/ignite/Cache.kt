@@ -18,6 +18,6 @@ open class Cache<K, V>(private val name: String,
         config.atomicityMode = atomicityMode
         config.backups = 1
 
-        ignite.createCache(config)
+        ignite.getOrCreateCache(config)
     }
 }
