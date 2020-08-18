@@ -3,6 +3,15 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.0'
 }
 
+ext {
+    igniteVersion = "2.8.1"
+    ignite = [
+            core    : "org.apache.ignite:ignite-core:${igniteVersion}",
+            spring  : "org.apache.ignite:ignite-spring:${igniteVersion}",
+            indexing: "org.apache.ignite:ignite-indexing:${igniteVersion}"
+    ]
+}
+
 allprojects {
     apply plugin: 'java-library'
     apply plugin: 'org.jetbrains.kotlin.jvm'
