@@ -47,7 +47,11 @@ open class DataStreamer<K, V>(topic: String,
         streamer.start()
     }
 
-    override fun close() {
+    fun stop() {
         streamer.stop()
+    }
+
+    override fun close() {
+        stop()
     }
 }
