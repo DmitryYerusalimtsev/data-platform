@@ -1,6 +1,6 @@
 package com.iotplatform.domain.devices
 
 abstract class Device(
-        val id: Long,
+        id: Long,
         val name: String
-)
+) : HasId<Long>

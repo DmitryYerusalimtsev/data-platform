@@ -1,0 +1,10 @@
+dependencies {
+    implementation(
+            ignite.core,
+            ignite.spring,
+            ignite.kafka,
+            klaxon,
+            gson,
+            project(':domain')
+    )
+}

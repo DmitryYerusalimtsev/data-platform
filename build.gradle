@@ -8,8 +8,11 @@ ext {
     ignite = [
             core    : "org.apache.ignite:ignite-core:${igniteVersion}",
             spring  : "org.apache.ignite:ignite-spring:${igniteVersion}",
-            indexing: "org.apache.ignite:ignite-indexing:${igniteVersion}"
+            indexing: "org.apache.ignite:ignite-indexing:${igniteVersion}",
+            kafka   : "org.apache.ignite:ignite-kafka:${igniteVersion}"
     ]
+    klaxon = "com.beust:klaxon:5.0.1"
+    gson = "com.google.code.gson:gson:2.8.5"
 }
 
 allprojects {
@@ -27,6 +30,7 @@ allprojects {
 
     repositories {
         mavenCentral()
+        jcenter()
     }
 }
 
