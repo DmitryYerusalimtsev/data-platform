@@ -11,8 +11,7 @@ open class DataStreamer<K, V>(topic: String,
                               cacheName: String,
                               consumerGroup: String,
                               extractor: StreamMultipleTupleExtractor<ConsumerRecord<*, *>, K, V>,
-                              numThreads: Int)
-    : AutoCloseable {
+                              numThreads: Int) {
 
     constructor(topic: String,
                 cacheName: String,
@@ -49,9 +48,5 @@ open class DataStreamer<K, V>(topic: String,
 
     fun stop() {
         streamer.stop()
-    }
-
-    override fun close() {
-        stop()
     }
 }

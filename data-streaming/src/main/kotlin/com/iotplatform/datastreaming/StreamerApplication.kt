@@ -15,9 +15,9 @@ fun main(args: Array<String>) {
             JsonExtractor(Speedometer::class))
 
     Runtime.getRuntime().addShutdownHook(
-            Thread(Runnable {
-                streamer.close()
-            })
+            Thread {
+                streamer.stop()
+            }
     )
 
     streamer.start()
