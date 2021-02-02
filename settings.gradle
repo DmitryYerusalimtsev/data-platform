@@ -1,5 +1,10 @@
 rootProject.name = 'iot-platform'
 
+include 'core'
 include 'domain'
 include 'initializer'
 include 'data-streaming'
+
+include ':executors:flink'
+
+include ':applications:agriculture:domain'

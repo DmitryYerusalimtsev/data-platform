@@ -1,0 +1,7 @@
+dependencies {
+    implementation(
+            project(':core'),
+            flink.streaming,
+            flink.kafka
+    )
+}
