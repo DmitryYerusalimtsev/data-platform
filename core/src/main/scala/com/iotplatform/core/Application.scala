@@ -2,10 +2,12 @@ package com.iotplatform.core
 
 import com.typesafe.scalalogging.LazyLogging
 
+import scala.reflect.{ClassTag, classTag}
 import scala.util.{Failure, Success, Try}
 
-trait Application[J <: Job] extends LazyLogging {
-  protected def job: J
+abstract class Application[J <: Job : ClassTag] extends LazyLogging {
+
+  protected def job: J = classTag[J].runtimeClass.newInstance.asInstanceOf[J]
 
   protected def executor: Executor[J]
 

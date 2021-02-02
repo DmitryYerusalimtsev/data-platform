@@ -8,3 +8,4 @@ include 'data-streaming'
 include ':executors:flink'
 
 include ':applications:agriculture:domain'
+include ':applications:agriculture:parser'

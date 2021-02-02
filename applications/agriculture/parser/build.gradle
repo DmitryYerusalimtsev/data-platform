@@ -1,0 +1,8 @@
+dependencies {
+    implementation(
+            project(':core'),
+            project(':executors:flink'),
+            project(':applications:agriculture:domain'),
+            flink.streaming
+    )
+}
