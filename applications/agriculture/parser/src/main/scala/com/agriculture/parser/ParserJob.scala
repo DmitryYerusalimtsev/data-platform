@@ -16,7 +16,9 @@ final class ParserJob extends FlinkJob {
 
     val location = telemetry.map(r => r.location)
 
-    val fuel = telemetry.map(r => r.fuel)
+    location.print()
+//
+//    val fuel = telemetry.map(r => r.fuel)
   }
 }
 

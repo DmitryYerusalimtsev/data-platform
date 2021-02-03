@@ -1,7 +1,9 @@
 dependencies {
     implementation(
             project(':core'),
+            flink.clients,
             flink.streaming,
-            flink.kafka
+            flink.kafka,
+            gson
     )
 }

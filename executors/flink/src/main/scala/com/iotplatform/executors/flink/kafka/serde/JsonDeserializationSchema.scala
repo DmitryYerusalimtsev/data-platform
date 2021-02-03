@@ -1,14 +1,12 @@
-package com.iotplatform.executors.flink.kafka
+package com.iotplatform.executors.flink.kafka.serde
 
 import org.apache.flink.api.common.serialization.DeserializationSchema
 import org.apache.flink.api.common.typeinfo.TypeInformation
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper
 
-final class JsonDeserializationSchema[T: TypeInformation] extends DeserializationSchema[T] {
-  private val objectMapper = new ObjectMapper()
-
+final class JsonDeserializationSchema[T: TypeInformation] extends DeserializationSchema[T] with GsonProvider {
   override def deserialize(message: Array[Byte]): T = {
-    objectMapper.readValue(message, getProducedType.getTypeClass)
+    val json = message.map(_.toChar).mkString
+    gson.fromJson[T](json, getProducedType.getTypeClass)
   }
 
   override def isEndOfStream(nextElement: T): Boolean = false

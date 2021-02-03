@@ -1,11 +1,11 @@
 package com.iotplatform.executors.flink.kafka
 
+import com.iotplatform.executors.flink.kafka.serde.JsonDeserializationSchema
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
 
 import java.util.Properties
-import scala.reflect.ClassTag
 
 class Kafka(servers: String, groupId: String, env: StreamExecutionEnvironment) {
 

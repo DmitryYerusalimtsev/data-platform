@@ -1,4 +1,4 @@
-package com.iotplatform.executors.flink.kafka
+package com.iotplatform.executors.flink.kafka.serde
 
 import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.flink.streaming.connectors.kafka.KafkaSerializationSchema

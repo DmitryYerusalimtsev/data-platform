@@ -8,7 +8,8 @@ ext {
     scalaCompatVersion = "2.12"
     scalaDependencies = [
             lib    : "org.scala-lang:scala-library:2.12.13",
-            logging: "com.typesafe.scala-logging:scala-logging_${scalaCompatVersion}:3.9.2"
+            logging: "com.typesafe.scala-logging:scala-logging_${scalaCompatVersion}:3.9.2",
+            log4j  : "org.apache.logging.log4j:log4j-slf4j-impl:2.11.0"
     ]
 
     igniteVersion = "2.8.1"
@@ -21,6 +22,7 @@ ext {
     ]
     flink = [
             streaming: "org.apache.flink:flink-streaming-scala_${scalaCompatVersion}:${flinkVersion}",
+            clients  : "org.apache.flink:flink-clients_${scalaCompatVersion}:${flinkVersion}",
             kafka    : "org.apache.flink:flink-connector-kafka_${scalaCompatVersion}:${flinkVersion}"
     ]
     klaxon = "com.beust:klaxon:5.0.1"
@@ -40,7 +42,8 @@ allprojects {
         implementation(
                 "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
                 scalaDependencies.lib,
-                scalaDependencies.logging
+                scalaDependencies.logging,
+                scalaDependencies.log4j
         )
         testCompile group: 'junit', name: 'junit', version: '4.12'
     }
