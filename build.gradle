@@ -27,6 +27,10 @@ ext {
     ]
     klaxon = "com.beust:klaxon:5.0.1"
     gson = "com.google.code.gson:gson:2.8.5"
+    github = [
+            pureConfig: "com.github.pureconfig:pureconfig_${scalaCompatVersion}:0.14.0",
+            scopt     : "com.github.scopt:scopt_${scalaCompatVersion}:4.0.0"
+    ]
 }
 
 allprojects {

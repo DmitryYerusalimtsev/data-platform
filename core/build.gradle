@@ -1,0 +1,6 @@
+dependencies {
+    implementation(
+            github.pureConfig,
+            github.scopt
+    )
+}
