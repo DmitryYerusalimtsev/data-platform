@@ -1,9 +1,10 @@
 package com.iotplatform.executors.flink.kafka
 
-import com.iotplatform.executors.flink.kafka.serde.JsonDeserializationSchema
+import com.iotplatform.executors.flink.kafka.serde.{JsonDeserializationSchema, JsonSerializationSchema}
 import org.apache.flink.api.common.typeinfo.TypeInformation
+import org.apache.flink.streaming.api.datastream.DataStreamSink
 import org.apache.flink.streaming.api.scala._
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
+import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer, FlinkKafkaProducer}
 
 import java.util.Properties
 
@@ -20,6 +21,17 @@ class Kafka(servers: String, groupId: String, env: StreamExecutionEnvironment) {
     val consumer = new FlinkKafkaConsumer[A](topic, new JsonDeserializationSchema[A], properties)
 
     env.addSource(consumer)(createTypeInformation[A])
+  }
+
+  def writeToTopic[A: TypeInformation](stream: DataStream[A], topic: String): DataStreamSink[A] = {
+
+    val producer = new FlinkKafkaProducer[A](
+      topic,
+      new JsonSerializationSchema[A](topic),
+      properties,
+      FlinkKafkaProducer.Semantic.EXACTLY_ONCE)
+
+    stream.addSink(producer)
   }
 }
 

@@ -14,11 +14,11 @@ final class ParserJob extends FlinkJob {
 
     val telemetry: DataStream[TractorTelemetry] = kafka.readTopic[TractorTelemetry]("tractor_telemetry")
 
-    val location = telemetry.map(r => r.location)
+    val location = telemetry.map(_.location)
+    val fuel = telemetry.map(_.fuel)
 
-    location.print()
-//
-//    val fuel = telemetry.map(r => r.fuel)
+    kafka.writeToTopic(location, "tractor_telemetry_geolocation")
+    kafka.writeToTopic(fuel, "tractor_telemetry_fuel")
   }
 }
 

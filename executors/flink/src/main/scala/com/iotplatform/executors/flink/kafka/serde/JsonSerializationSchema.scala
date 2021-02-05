@@ -1,21 +1,21 @@
 package com.iotplatform.executors.flink.kafka.serde
 
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper
+import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.streaming.connectors.kafka.KafkaSerializationSchema
 import org.apache.kafka.clients.producer.ProducerRecord
 
 import java.lang
-import scala.reflect.ClassTag
-import scala.util.{Failure, Try}
 
-final class JsonSerializationSchema[T: ClassTag](topic: String) extends KafkaSerializationSchema[T] {
-  private val objectMapper = new ObjectMapper()
+final class JsonSerializationSchema[T: TypeInformation](topic: String) extends KafkaSerializationSchema[T]
+  with GsonProvider {
 
   override def serialize(element: T, timestamp: lang.Long): ProducerRecord[Array[Byte], Array[Byte]] = {
-    Try {
-      new ProducerRecord(topic, objectMapper.writeValueAsBytes(element))
-    } match {
-      case Failure(ex) => throw new IllegalArgumentException("Could not serialize record: " + element, ex)
+    try {
+      val json = gson.toJson(element)
+      new ProducerRecord(topic, json.getBytes())
+    }
+    catch {
+      case ex: Exception => throw new IllegalArgumentException("Could not serialize record: " + element, ex)
     }
   }
 }
