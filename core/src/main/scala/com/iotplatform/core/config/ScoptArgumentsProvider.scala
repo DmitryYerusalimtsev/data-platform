@@ -1,8 +1,7 @@
 package com.iotplatform.core.config
 
+import com.iotplatform.core.Arguments
 import scopt.OptionParser
-
-import scala.collection.mutable
 
 trait ScoptArgumentsProvider extends ArgumentsProvider {
   override def argumentsFrom(args: Array[String]): Arguments = {
@@ -19,7 +18,7 @@ trait ScoptArgumentsProvider extends ArgumentsProvider {
         .action((args, parameters) => parameters.copy(args = args))
         .text("Other arguments")
     }
-    parser.parse(args, mutable.Map()) match {
+    parser.parse(args, Arguments()) match {
       case Some(value) => value
       case None => throw new IllegalArgumentException("Failed to parse arguments")
     }

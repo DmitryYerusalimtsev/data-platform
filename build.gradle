@@ -7,9 +7,11 @@ plugins {
 ext {
     scalaCompatVersion = "2.12"
     scalaDependencies = [
-            lib    : "org.scala-lang:scala-library:2.12.13",
-            logging: "com.typesafe.scala-logging:scala-logging_${scalaCompatVersion}:3.9.2",
-            log4j  : "org.apache.logging.log4j:log4j-slf4j-impl:2.11.0"
+            lib           : "org.scala-lang:scala-library:2.12.13",
+            logging       : "com.typesafe.scala-logging:scala-logging_${scalaCompatVersion}:3.9.2",
+            log4j         : "org.apache.logging.log4j:log4j-slf4j-impl:2.11.0",
+            typesafeConfig: "com.typesafe:config:1.4.1",
+            scopt         : "com.github.scopt:scopt_${scalaCompatVersion}:4.0.0"
     ]
 
     igniteVersion = "2.8.1"
@@ -27,10 +29,6 @@ ext {
     ]
     klaxon = "com.beust:klaxon:5.0.1"
     gson = "com.google.code.gson:gson:2.8.5"
-    github = [
-            pureConfig: "com.github.pureconfig:pureconfig_${scalaCompatVersion}:0.14.0",
-            scopt     : "com.github.scopt:scopt_${scalaCompatVersion}:4.0.0"
-    ]
 }
 
 allprojects {

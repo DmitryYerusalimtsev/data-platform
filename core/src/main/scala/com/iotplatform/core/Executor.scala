@@ -1,5 +1,5 @@
 package com.iotplatform.core
 
-trait Executor[-J <: Job[_]] {
+trait Executor[-J <: Job] {
   def run(job: J): Unit = job.script()
 }

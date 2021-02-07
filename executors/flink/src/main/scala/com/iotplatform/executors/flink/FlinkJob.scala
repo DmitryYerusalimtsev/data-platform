@@ -1,9 +1,11 @@
 package com.iotplatform.executors.flink
 
-import com.iotplatform.core.Job
+import com.iotplatform.core.ConfiguredJob
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 
-trait FlinkJob extends Job {
+import scala.reflect.ClassTag
+
+abstract class FlinkJob[C: ClassTag] extends ConfiguredJob[C] {
   private var _env: StreamExecutionEnvironment = _
 
   implicit lazy val env: StreamExecutionEnvironment = _env

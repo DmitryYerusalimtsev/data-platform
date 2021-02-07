@@ -36,6 +36,9 @@ class Kafka(servers: String, groupId: String, env: StreamExecutionEnvironment) {
 }
 
 object Kafka {
+  def apply(config: KafkaConfig)(implicit env: StreamExecutionEnvironment): Kafka =
+    apply(config.servers, config.groupId)
+
   def apply(servers: String, groupId: String)(implicit env: StreamExecutionEnvironment): Kafka =
     new Kafka(servers, groupId, env)
 }

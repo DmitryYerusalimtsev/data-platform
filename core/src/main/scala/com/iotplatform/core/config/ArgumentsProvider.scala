@@ -1,6 +1,6 @@
 package com.iotplatform.core.config
 
-case class Arguments(configPath: String, args: Map[String, String] = Map())
+import com.iotplatform.core.Arguments
 
 trait ArgumentsProvider {
   def argumentsFrom(args: Array[String]): Arguments

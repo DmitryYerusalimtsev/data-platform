@@ -1,14 +1,13 @@
 package com.iotplatform.core
 
-import com.iotplatform.core.config.{PureConfigProvider, ScoptArgumentsProvider}
+import com.iotplatform.core.config.ScoptArgumentsProvider
 import com.typesafe.scalalogging.LazyLogging
 
 import scala.reflect.{ClassTag, classTag}
 import scala.util.{Failure, Success, Try}
 
-abstract class Application[C, J <: Job[C] : ClassTag]
-  extends PureConfigProvider
-    with ScoptArgumentsProvider
+abstract class Application[J <: ConfiguredJob[_] : ClassTag]
+  extends ScoptArgumentsProvider
     with LazyLogging {
 
   protected val job: J = classTag[J].runtimeClass.newInstance.asInstanceOf[J]
@@ -17,9 +16,8 @@ abstract class Application[C, J <: Job[C] : ClassTag]
 
   def main(args: Array[String]): Unit = {
     val arguments = argumentsFrom(args)
-    val config = configFrom(arguments.configPath)
+    job.setArguments(arguments)
 
-    job.setConfig(config)
     run(job, executor)
   }
 

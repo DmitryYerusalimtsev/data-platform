@@ -5,12 +5,10 @@ import com.iotplatform.executors.flink.FlinkJob
 import com.iotplatform.executors.flink.kafka.Kafka
 import org.apache.flink.streaming.api.scala._
 
-final class ParserJob extends FlinkJob {
+final class ParserJob extends FlinkJob[ParserConfig] {
+
   override def script(): Unit = {
-    val kafka = Kafka(
-      servers = "localhost:9092",
-      groupId = name
-    )
+    val kafka = Kafka(config.kafka)
 
     val telemetry: DataStream[TractorTelemetry] = kafka.readTopic[TractorTelemetry]("tractor_telemetry")
 
