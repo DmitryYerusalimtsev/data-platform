@@ -5,7 +5,7 @@ import com.typesafe.scalalogging.LazyLogging
 
 import scala.reflect.ClassTag
 
-trait Job {
+trait Job extends LazyLogging {
   def name: String = this.getClass.getSimpleName
     .replace("Job", "")
 
@@ -13,7 +13,7 @@ trait Job {
 }
 
 abstract class ConfiguredJob[C: ClassTag] extends Job
-  with TypesafeConfigProvider with LazyLogging {
+  with TypesafeConfigProvider {
 
   protected lazy val config: C = configFrom(arguments.configPath)
 

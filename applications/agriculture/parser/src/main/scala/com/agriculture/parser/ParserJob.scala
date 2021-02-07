@@ -10,7 +10,7 @@ final class ParserJob extends FlinkJob[ParserConfig] {
   override def script(): Unit = {
     val kafka = Kafka(config.kafka)
 
-    val telemetry: DataStream[TractorTelemetry] = kafka.readTopic[TractorTelemetry]("tractor_telemetry")
+    val telemetry = kafka.readTopic[TractorTelemetry]("tractor_telemetry")
 
     val location = telemetry.map(_.location)
     val fuel = telemetry.map(_.fuel)
