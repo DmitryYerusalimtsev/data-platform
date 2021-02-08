@@ -22,7 +22,7 @@ abstract class Application[J <: ConfiguredJob[_] : ClassTag]
   }
 
   protected def run(job: J, executor: Executor[J]): Unit = {
-    logger.info(s"Start executing job '${job.name}' with executor '${executor.getClass.getSimpleName}'.")
+    logger.info(s"Start executing job '${job.name}' with executor '${executor.getClass.getName}'.")
 
     Try(executor.run(job)) match {
       case Success(_) => logger.info(s"Execution of job '${job.name}' successfully finished.")
