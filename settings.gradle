@@ -1,4 +1,4 @@
-rootProject.name = 'iot-platform'
+rootProject.name = 'data-platform'
 
 include 'core'
 include 'domain'
