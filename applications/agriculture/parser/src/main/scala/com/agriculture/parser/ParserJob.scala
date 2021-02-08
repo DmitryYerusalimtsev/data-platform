@@ -19,7 +19,3 @@ final class ParserJob extends FlinkJob[ParserConfig] {
     kafka.writeToTopic(fuel, "tractor_telemetry_fuel")
   }
 }
-
-object ParserJob {
-  def apply(): ParserJob = new ParserJob()
-}
