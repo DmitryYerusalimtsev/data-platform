@@ -36,7 +36,7 @@ allprojects {
     apply plugin: 'org.jetbrains.kotlin.jvm'
     apply plugin: 'scala'
 
-    group = 'com.iotplatform'
+    group = 'com.dataplatform'
     version = '1.0-SNAPSHOT'
     archivesBaseName = project.name
 

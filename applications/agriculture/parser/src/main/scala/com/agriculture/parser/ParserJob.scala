@@ -1,8 +1,8 @@
 package com.agriculture.parser
 
 import com.agriculture.domain.TractorTelemetry
-import com.iotplatform.executors.flink.FlinkJob
-import com.iotplatform.executors.flink.kafka.Kafka
+import com.dataplatform.executors.flink.FlinkJob
+import com.dataplatform.executors.flink.kafka.Kafka
 import org.apache.flink.streaming.api.scala._
 
 final class ParserJob extends FlinkJob[ParserConfig] {

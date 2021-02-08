@@ -1,6 +1,6 @@
 package com.agriculture.parser
 
-import com.iotplatform.executors.flink.kafka.KafkaConfig
+import com.dataplatform.executors.flink.kafka.KafkaConfig
 
 import scala.beans.BeanProperty
 
